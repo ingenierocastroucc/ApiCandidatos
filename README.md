@@ -6,19 +6,19 @@ Bienvenido al repositorio de la API para el intercambio de transacciones en la e
 
 * Intercambio de Datos: Comunicación fluida entre sistemas de evaluación de candidatos.
 
-* Seguridad: Protección de datos sensibles con autenticación y autorización avanzadas.
+**Seguridad:** Protección de datos sensibles con autenticación y autorización avanzadas.
 
-* Flexibilidad: Adaptable a diversos formatos y requisitos de integración.
+**Flexibilidad:** Adaptable a diversos formatos y requisitos de integración.
 
-* Documentación Completa: Instrucciones claras y ejemplos para una integración sencilla.
+**Documentación Completa:** Instrucciones claras y ejemplos para una integración sencilla.
 
 ## Endpoints
 
-* GET /api/servicesquestion/{theme}: Obtencion de preguntas por tema.
+**GET /api/servicesquestion/{theme}:** Obtencion de preguntas por tema.
 
-* POST /api/quiz new: Añade una nueva pregunta.
+**POST /api/quiz new:** Añade una nueva pregunta.
 
-* DELETE /api/quiz/{id}: Elimina una pregunta.
+**DELETE /api/quiz/{id}:** Elimina una pregunta.
   
 ## Uso
 Puedes interactuar con la API utilizando herramientas como Postman o directamente desde tu aplicación. Consulta los endpoints proporcionados para conocer las operaciones disponibles y sus parámetros.
