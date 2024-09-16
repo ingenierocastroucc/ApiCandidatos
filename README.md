@@ -4,7 +4,7 @@ Bienvenido al repositorio de la API para el intercambio de transacciones en la e
 
 ## Características
 
-* Intercambio de Datos: Comunicación fluida entre sistemas de evaluación de candidatos.
+**Intercambio de Datos:** Comunicación fluida entre sistemas de evaluación de candidatos.
 
 **Seguridad:** Protección de datos sensibles con autenticación y autorización avanzadas.
 
