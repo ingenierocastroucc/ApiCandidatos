@@ -5,7 +5,7 @@
 * Unidad        : <.NET/C# modelo para el mapeo de las propiedades de QuizItem>                                                                      
 * DescripciÓn   : <Logica de negocio para los servicios de los QuizItem>                                                      
 * Autor         : <Pedro Castro>
-* Fecha         : <03-09-2024>                                                                             
+* Fecha         : <16-09-2024>                                                                             
 ***************************************************************************************************/
 #endregion Documentación
 using System.ComponentModel.DataAnnotations;

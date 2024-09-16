@@ -1,0 +1,28 @@
+@api_attacking_sharp_HostAddress = http://localhost:9696
+
+# Consultar preguntas por temática
+GET {{api_attacking_sharp_HostAddress}}/api/quiz/{tema}
+Accept: application/json
+
+###
+POST  {{api_attacking_sharp_HostAddress}}/api/quiz/
+Accept: application/json
+
+{
+    "question": "texto de la pregunta",
+    "score": 99,
+    "answer": 2,
+    "theme": "cualquier temática",
+    "options": [
+        { index:1, "title": "opción 1" },
+        { index:2, "title": "opción 2" },
+        { index:3, "title": "opción 3" },
+        { index:4, "title": "opción 4" },
+    ]
+}
+
+###
+DELETE {{api_attacking_sharp_HostAddress}}/api/quiz/2
+Accept: application/json
+
+###
