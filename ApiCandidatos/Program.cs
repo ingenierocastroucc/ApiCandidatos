@@ -4,20 +4,26 @@ using Web.Api.Extensions;
 using Web.Api.Endpoints.Services;
 using Web.Api.Controllers;
 using Web.Api.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configura la cadena de conexión y el contexto de la base de datos
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<WebApiContext>(options =>
+    options.UseSqlServer(connectionString));
 
 // Configura los servicios
 builder.Services.AddCors(builder.Configuration); // Llama al método de extensión
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSqlServer<WebApiContext>("Data Source=LAPTOP-PH1R9POH;Initial Catalog=ApiCandidatos;Integrated Security=True;TrustServerCertificate=True;");
 builder.Services.AddScoped<IServicesQuestion, ServicesQuestion>();
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 
 
 var app = builder.Build();
+
 
 // Configura el pipeline de solicitudes HTTP
 if (app.Environment.IsDevelopment())
