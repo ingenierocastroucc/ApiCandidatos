@@ -22,7 +22,7 @@ namespace Web.Api.Controllers
 
         public ServicesQuestionController(IServicesQuestion questionService)
         {
-            questionService = questionService;
+            questionService = questionService ?? throw new ArgumentNullException(nameof(questionService));
         }
 
         public void MapEndpoint(IEndpointRouteBuilder app)
