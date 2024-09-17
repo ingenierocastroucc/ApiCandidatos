@@ -212,4 +212,4 @@ app.UseCors("MyPolicy");
 
 La API utiliza validación personalizada para los datos de entrada en los endpoint. La clase QuizItemModel incluye anotaciones de datos para imponer restricciones en los datos de la solicitud.
 
-Este README proporciona una visión general completa de tu proyecto, cubriendo la configuración, los endpoints, la configuración de CORS y la validación del modelo. Está diseñado para ayudar a otros desarrolladores a entender y usar tu API de manera efectiva.
+Este README proporciona una visión general completa del proyecto, cubriendo la configuración, los endpoints, la configuración de CORS y la validación del modelo. Está diseñado para ayudar a otros desarrolladores a entender y usar tu API de manera efectiva.
