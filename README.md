@@ -58,6 +58,12 @@ Actualiza la cadena de conexión DefaultConnection en el archivo appsettings.jso
 ## Ejemplo de Solicitud:
 
 ```
+GET https://localhost:(puerto)/api/ServicesApi/createdb
+
+```
+**Descripción:** Para la creacion de la base de datos.
+
+```
 GET https://localhost:(puerto)/api/servicesquestion/Art
 
 ```
