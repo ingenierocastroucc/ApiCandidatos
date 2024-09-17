@@ -17,37 +17,42 @@ namespace Web.Api.Models
     public class QuizItemModel
     {
         /// <summary>
-        /// Propiedad para el id del quiz Item
+        /// Identificador único del ítem del quiz.
         /// </summary>
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Propiedad para la pregunta del ususario
+        /// Pregunta del ítem del quiz.
         /// </summary>
+        [Required]
+        [StringLength(500, ErrorMessage = "La pregunta no puede tener más de 500 caracteres.")]
         public string Question { get; set; }
 
         /// <summary>
-        /// Propiedad para obtener el horario de disponibilidad
+        /// Índice de la respuesta correcta.
         /// </summary>
+        [Range(0, int.MaxValue, ErrorMessage = "El índice de respuesta debe ser un número positivo.")]
         public int AnswerIndex { get; set; }
 
         /// <summary>
-        /// Propiedad para obtener el horario de disponibilidad
+        /// Puntuación del ítem del quiz.
         /// </summary>
+        [Range(0, int.MaxValue, ErrorMessage = "La puntuación debe ser un número positivo.")]
         public int Score { get; set; }
 
         /// <summary>
-        /// Propiedad para el tema de la pregunta
+        /// Tema de la pregunta.
         /// </summary>
+        [StringLength(100, ErrorMessage = "El tema no puede tener más de 100 caracteres.")]
         public string Theme { get; set; }
 
         /// <summary>
-        /// Propiedad para las opciones de respuesta disponibles.
-        /// </summary>
+        /// Cadena JSON que representa las opciones de respuesta disponibles.
+        /// </summary>>
         public string ChoicesJson { get; set; }
 
         /// <summary>
-        /// propiedad para la lista de cadenas. Internamente, esta lista se convierte a JSON.
+        /// Lista de opciones de respuesta. Se convierte a y desde JSON.
         /// </summary>
         [NotMapped]
         public List<string> Choices
