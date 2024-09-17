@@ -63,11 +63,6 @@ app.MapDelete("/api/quiz/{id}", async (Guid id, IServicesQuestion questionServic
     return result ? Results.Ok($"Question with ID {id} successfully deleted.") : Results.NotFound("Question not found");
 });
 
-app.MapGet("/api/testcors", (HttpContext context) =>
-{
-    return Results.Ok("CORS está funcionando correctamente.");
-});
-
 app.MapControllers(); // Registra los controladores
 
 await app.RunAsync();
