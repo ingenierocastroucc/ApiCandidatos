@@ -42,30 +42,91 @@ app.UseAuthorization();
 
 app.MapGet("/api/servicesquestion/{theme}", async (string theme, IServicesQuestion questionService) =>
 {
-    var result = questionService.Get(theme);
-    return Results.Ok(result);
+    // Validación del parámetro
+    if (string.IsNullOrWhiteSpace(theme))
+    {
+        return Results.BadRequest("Tema es un parametro requerido.");
+    }
+
+    try
+    {
+        var result = questionService.Get(theme);
+
+        // Verificar si el resultado es nulo o vacío
+        if (result == null || !result.Any())
+        {
+            return Results.NotFound("No existe una pregunta para este tema en especifico.");
+        }
+
+        return Results.Ok(result);
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem("Ah ocurrido un error procesando su solicitud.", statusCode: 500);
+    }
 });
 
 app.MapPost("/api/quiz", async (QuizItemModel request, IServicesQuestion questionService) =>
 {
-    if (request == null)
+    // Validación del modelo
+    if (!IsValidQuizItemModel(request))
     {
-        return Results.BadRequest("Invalid request payload");
+        return Results.BadRequest("Invalid request payload.");
     }
 
-    var result = await questionService.AddQuestionAsync(request);
-    return result ? Results.Created($"/api/quiz/{request.Question}", request) : Results.Problem("Error al guardar la pregunta en la base de datos", statusCode: 500);
+    try
+    {
+        // Llamada al servicio para agregar la pregunta
+        var result = await questionService.AddQuestionAsync(request);
+
+        if (result)
+        {
+            // Devuelve una respuesta 201 Created con la ubicación del nuevo recurso
+            return Results.Created($"/api/quiz/{request.Question}", request);
+        }
+        else
+        {
+            // Devuelve un error 500 si la operación falla
+            return Results.Problem("Error al guardar la pregunta en la base de datos.", statusCode: 500);
+        }
+    }
+    catch (Exception ex)
+    {
+        // Aquí puedes registrar la excepción o tomar otras medidas si es necesario
+        return Results.Problem("Ah ocurrido un error procesando su solicitud.", statusCode: 500);
+    }
 });
+
+bool IsValidQuizItemModel(QuizItemModel model)
+{
+    return model != null && !string.IsNullOrWhiteSpace(model.Question);
+}
+
 
 app.MapDelete("/api/quiz/{id}", async (Guid id, IServicesQuestion questionService) =>
 {
     if (id == Guid.Empty)
     {
-        return Results.BadRequest("Invalid question ID");
+        return Results.BadRequest("Este Id no se encuentra registrado.");
     }
 
-    var result = await questionService.DeleteQuestionAsync(id);
-    return result ? Results.Ok($"Question with ID {id} successfully deleted.") : Results.NotFound("Question not found");
+    try
+    {
+        var result = await questionService.DeleteQuestionAsync(id);
+
+        if (result)
+        {
+            return Results.Ok($"La pregunta con Id {id} ha sido eliminada.");
+        }
+        else
+        {
+            return Results.NotFound("La pregunta no existe.");
+        }
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem("Ah ocurrido un error procesando su solicitud.", statusCode: 500);
+    }
 });
 
 app.MapControllers(); // Registra los controladores
