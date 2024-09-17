@@ -20,12 +20,12 @@ namespace Web.Api.Controllers
     public class ServicesApiController : ControllerBase
     {
         IServicesMiniApi iServicesApi;
-        WepApiContext dbcontext;
+        WebApiContext dbcontext;
 
         /// Manejo de logs
         private readonly ILogger<ServicesApiController> _logger;
 
-        public ServicesApiController(IServicesMiniApi services, ILogger<ServicesApiController> loggerServices, WepApiContext db)
+        public ServicesApiController(IServicesMiniApi services, ILogger<ServicesApiController> loggerServices, WebApiContext db)
         {
             _logger = loggerServices;
 

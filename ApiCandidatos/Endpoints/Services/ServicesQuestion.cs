@@ -18,11 +18,11 @@ namespace Web.Api.Endpoints.Services
 {
     public class ServicesQuestion : IServicesQuestion
     {
-        WepApiContext context;
+        WebApiContext context;
 
 
         ///Acceso a la base de datos
-        public ServicesQuestion(WepApiContext dbcontext)
+        public ServicesQuestion(WebApiContext dbcontext)
         {
             context = dbcontext;
         }
@@ -31,14 +31,14 @@ namespace Web.Api.Endpoints.Services
         public IEnumerable<QuizItemModel> Get(string theme)
         {
             var themeLower = theme.ToLower();
-            return context.QuizItemModelVirtual
+            return context.QuizItems
                 .Where(item => item.Theme.ToLower() == themeLower);
         }
 
         public async Task<bool> AddQuestionAsync(QuizItemModel question)
         {
             // Implementa aquí la lógica para agregar la pregunta.
-            context.QuizItemModelVirtual.Add(question);
+            context.QuizItems.Add(question);
             await context.SaveChangesAsync();
             return true;
         }
@@ -46,14 +46,14 @@ namespace Web.Api.Endpoints.Services
         // Eliminación de una pregunta
         public async Task<bool> DeleteQuestionAsync(Guid id)
         {
-            var question = await context.QuizItemModelVirtual.FindAsync(id);
+            var question = await context.QuizItems.FindAsync(id);
 
             if (question == null)
             {
                 return false; // La pregunta no fue encontrada
             }
 
-            context.QuizItemModelVirtual.Remove(question);
+            context.QuizItems.Remove(question);
             await context.SaveChangesAsync();
             return true; // La pregunta fue eliminada
         }

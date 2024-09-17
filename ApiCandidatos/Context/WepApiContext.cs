@@ -14,21 +14,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Web.Api.Context
 {
-    public class WepApiContext : DbContext
+    public class WebApiContext : DbContext
     {
         /// <summary>
-        /// Propiedad para la obtencion del Dbset de los QuizItem
+        /// DbSet para obtener y manipular los elementos de tipo QuizItem en la base de datos.
         /// </summary>
-        public DbSet<QuizItemModel> QuizItemModelVirtual { get; set; }
+        public DbSet<QuizItemModel> QuizItems { get; set; }
 
         /// <summary>
-        /// Propiedad para la creacion de la base de datos
+        /// Constructor que recibe las opciones de configuración del DbContext.
         /// </summary>
-        public WepApiContext(DbContextOptions<WepApiContext> options) : base(options) { }
+        public WebApiContext(DbContextOptions<WebApiContext> options) : base(options) { }
 
         /// <summary>
-        /// Propiedad para el seteo de data
+        /// Configura el modelo de datos en el contexto. Incluye la configuración de las entidades y datos iniciales.
         /// </summary>
+        /// <param name="modelBuilder">Constructor del modelo que permite configurar las entidades.</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             List<QuizItemModel> quizItemInit = new List<QuizItemModel>();

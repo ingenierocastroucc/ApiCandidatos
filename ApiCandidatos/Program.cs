@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(builder.Configuration); // Llama al método de extensión
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSqlServer<WepApiContext>("Data Source=LAPTOP-PH1R9POH;Initial Catalog=ApiCandidatos;Integrated Security=True;TrustServerCertificate=True;");
+builder.Services.AddSqlServer<WebApiContext>("Data Source=LAPTOP-PH1R9POH;Initial Catalog=ApiCandidatos;Integrated Security=True;TrustServerCertificate=True;");
 builder.Services.AddScoped<IServicesMiniApi, ServicesMiniApi>();
 builder.Services.AddScoped<IServicesQuestion, ServicesQuestion>();
 builder.Services.AddAuthorization();
