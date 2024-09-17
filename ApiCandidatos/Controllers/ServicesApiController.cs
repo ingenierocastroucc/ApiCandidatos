@@ -20,13 +20,11 @@ namespace Web.Api.Controllers
     [Route("api/[controller]")]
     public class ServicesApiController : ControllerBase
     {
-        private readonly IServicesMiniApi _servicesApi;
         private readonly WebApiContext _dbContext;
         private readonly ILogger<ServicesApiController> _logger;
 
-        public ServicesApiController(IServicesMiniApi servicesApi, ILogger<ServicesApiController> logger, WebApiContext dbContext)
+        public ServicesApiController(/*IServicesMiniApi servicesApi,*/ ILogger<ServicesApiController> logger, WebApiContext dbContext)
         {
-            _servicesApi = servicesApi ?? throw new ArgumentNullException(nameof(servicesApi));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
