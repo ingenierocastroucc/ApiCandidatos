@@ -216,11 +216,53 @@ La API utiliza validación personalizada para los datos de entrada en los endpoi
 
 El proyecto incluye pruebas unitarias para verificar la funcionalidad de los servicios relacionados con las preguntas de cuestionarios. Estas pruebas utilizan el framework xUnit y Moq para simular el comportamiento de los servicios.
 
-## Descripción de las Pruebas
+**Descripción de las Pruebas**
 
 **ServiciosPreguntaTests**
 
 **ObtenerPregunta:** Verifica que el endpoint de obtener preguntas retorna un resultado OK con los datos esperados.
 **EliminarPregunta:** Verifica que el endpoint de eliminar una pregunta retorna un BadRequest si se proporciona un ID inválido.
+
+**Ejemplo de Código de Prueba**
+
+```
+public class ServiciosPreguntaTests
+{
+    private readonly Mock<IQuestionService> _mockQuestionService;
+
+    public ServiciosPreguntaTests()
+    {
+        _mockQuestionService = new Mock<IQuestionService>();
+    }
+
+    [Fact]
+    public async Task ObtenerPregunta_ReturnsOkResult_WithExpectedData()
+    {
+        // Arrange
+        var tema = "testTema";
+        dynamic resultadoEsperado = CrearResultadoEsperado();
+        _mockQuestionService.Setup(servicio => servicio.Get(tema)).Returns(resultadoEsperado);
+
+        // Act
+        var resultado = await EjecutarEndpointObtenerPregunta(tema);
+
+        // Assert
+        AssertOkResultConDatosEsperados(resultado, resultadoEsperado);
+    }
+
+    [Fact]
+    public async Task EliminarPregunta_ConIdInvalido_ReturnsBadRequest()
+    {
+        // Arrange
+        var idInvalido = Guid.Empty.ToString();
+
+        // Act
+        var resultado = await EjecutarEndpointEliminarPregunta(idInvalido);
+
+        // Assert
+        AssertBadRequestParaIdInvalido(resultado);
+    }
+}
+```
 
 Este README proporciona una visión general completa del proyecto, cubriendo la configuración, los endpoints, la configuración de CORS y la validación del modelo. Está diseñado para ayudar a otros desarrolladores a entender y usar tu API de manera efectiva.
