@@ -212,4 +212,15 @@ app.UseCors("MyPolicy");
 
 La API utiliza validación personalizada para los datos de entrada en los endpoint. La clase QuizItemModel incluye anotaciones de datos para imponer restricciones en los datos de la solicitud.
 
+## Pruebas Unitarias
+
+El proyecto incluye pruebas unitarias para verificar la funcionalidad de los servicios relacionados con las preguntas de cuestionarios. Estas pruebas utilizan el framework xUnit y Moq para simular el comportamiento de los servicios.
+
+## Descripción de las Pruebas
+
+**ServiciosPreguntaTests**
+
+**ObtenerPregunta:** Verifica que el endpoint de obtener preguntas retorna un resultado OK con los datos esperados.
+**EliminarPregunta:** Verifica que el endpoint de eliminar una pregunta retorna un BadRequest si se proporciona un ID inválido.
+
 Este README proporciona una visión general completa del proyecto, cubriendo la configuración, los endpoints, la configuración de CORS y la validación del modelo. Está diseñado para ayudar a otros desarrolladores a entender y usar tu API de manera efectiva.
