@@ -265,4 +265,4 @@ public class ServiciosPreguntaTests
 }
 ```
 
-Este README proporciona una visión general completa del proyecto, cubriendo la configuración, los endpoints, la configuración de CORS y la validación del modelo. Está diseñado para ayudar a otros desarrolladores a entender y usar tu API de manera efectiva.
+Este README proporciona una visión general completa del proyecto, cubriendo la configuración, los endpoints, la configuración de CORS, la validación del modelo y pruebas unitarias con Xunit y Moq. Está diseñado para ayudar a otros desarrolladores a entender y usar la API de manera efectiva.
